@@ -22,8 +22,12 @@ struct old_hash_partitioner {
 
 template <typename Hash>
 struct hash_partitioner {
-  hash_partitioner(ygm::comm &comm, Hash hash = Hash())
+  hash_partitioner(const ygm::comm &comm, Hash hash = Hash())
       : m_comm_size(comm.size()), m_hasher(hash) {}
+
+  hash_partitioner(const ygm::comm &comm, const hash_partitioner<Hash>& other)
+      : m_comm_size(comm.size()), m_hasher(other.m_hasher) {}
+
   template <typename Key>
   int owner(const Key &key) const {
     return (m_hasher(key) * 2654435769L >> 32) %
