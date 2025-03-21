@@ -176,7 +176,8 @@ class set
   set(self_type &other)
       : m_comm(other.comm()),
         pthis(this),
-        partitioner(other.comm(), other.partitioner) {
+        partitioner(other.comm(), other.partitioner),
+        m_local_set(other.m_local_set) {
     pthis.check(m_comm);
   }
 
