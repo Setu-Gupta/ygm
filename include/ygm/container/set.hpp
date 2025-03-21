@@ -172,7 +172,8 @@ class set
     pthis.check(m_comm);
   }
 
-  set(const self_type &other)
+  // TODO: Make other constant
+  set(self_type &other)
       : m_comm(other.comm()),
         pthis(this),
         partitioner(other.comm(), other.partitioner) {
