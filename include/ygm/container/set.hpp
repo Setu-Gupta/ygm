@@ -48,7 +48,7 @@ class multiset
   multiset(const self_type &other)
       : m_comm(other.comm()),
         pthis(this),
-        partitioner(other.comm, other.partitioner) {
+        partitioner(other.comm(), other.partitioner) {
     pthis.check(m_comm);
   }
 
@@ -175,7 +175,7 @@ class set
   set(const self_type &other)
       : m_comm(other.comm()),
         pthis(this),
-        partitioner(other.comm, other.partitioner) {
+        partitioner(other.comm(), other.partitioner) {
     pthis.check(m_comm);
   }
 
